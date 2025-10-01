@@ -1,0 +1,17 @@
+{
+  "name": "my-microfrontend-app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "npm run start:all",
+    "start:all": "concurrently --kill-others-on-fail --names \"CARRINHO,PRODUTOS,APP\" \"npm run start:carrinho\" \"npm run start:produtos\" \"npm run start:app\" \"npm run open\"",
+    "start:app": "npm start --prefix app",
+    "start:carrinho": "npm start --prefix carrinho",
+    "start:produtos": "npm start --prefix produtos",
+    "open": "npx open-cli http://localhost:8083"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "open-cli": "^8.0.0"
+  }
+}
