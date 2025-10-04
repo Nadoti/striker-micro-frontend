@@ -7,11 +7,11 @@ const devConfig = {
   mode: 'production',
   output: {
     filename: '[name].[contenthash].js',
-    publicPath: '/produtos/latest/'
+    publicPath: '/home/latest/'
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: 'produtos',
+      name: 'home',
       filename: 'remoteEntry.js',
       exposes: {
         './App': './src/bootstrap',

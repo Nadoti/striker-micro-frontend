@@ -6,11 +6,11 @@ const deps = require('../package.json').dependencies;
 const devConfig = {
   mode: 'development',
   output: { 
-    publicPath: 'http://localhost:8083/',
+    publicPath: 'http://localhost:8085/',
     filename: '[name].js',
   },
   devServer: { 
-    port: 8083, 
+    port: 8085, 
     historyApiFallback: { index: 'index.html' },
     hot: true,
     headers: {
@@ -19,11 +19,10 @@ const devConfig = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: 'app',
-      remotes: {
-        carrinho: 'carrinho@http://localhost:8081/remoteEntry.js',
-        produtos: 'produtos@http://localhost:8082/remoteEntry.js',
-        dashboard: 'dashboard@http://localhost:8085/remoteEntry.js',
+      name: 'dashboard',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './App': './src/bootstrap',
       },
       shared: {
         ...deps,

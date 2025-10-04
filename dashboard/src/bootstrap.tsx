@@ -4,7 +4,7 @@ import { createMemoryHistory, createBrowserHistory, History, Update } from 'hist
 import { Router } from 'react-router-dom';
 import App from './App';
 
-const ROOT_ID = '#_produtos-dev-Root';
+const ROOT_ID = '#_dashboard-dev-Root';
 
 interface MountOptions {
   onNavigate?: (location: { pathname: string }) => void;
