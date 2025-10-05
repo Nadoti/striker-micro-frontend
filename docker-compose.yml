@@ -1,0 +1,62 @@
+   version: '3.8'
+
+   services:
+     carrinho:
+       build:
+         context: ./carrinho
+         dockerfile: Dockerfile
+       ports:
+         - "8081:8081"
+       environment:
+         - NODE_ENV=development
+       networks:
+         - mfe-network
+       healthcheck:
+         test: ["CMD", "curl", "-f", "http://localhost:8081"]
+         interval: 30s
+         timeout: 10s
+         retries: 3
+         start_period: 40s
+
+     produtos:
+       build:
+         context: ./produtos
+         dockerfile: Dockerfile
+       ports:
+         - "8082:8082"
+       environment:
+         - NODE_ENV=development
+       networks:
+         - mfe-network
+       healthcheck:
+         test: ["CMD", "curl", "-f", "http://localhost:8082"]
+         interval: 30s
+         timeout: 10s
+         retries: 3
+         start_period: 40s
+
+     app:
+       build:
+         context: ./app
+         dockerfile: Dockerfile
+       ports:
+         - "8083:8083"
+       environment:
+         - NODE_ENV=development
+       networks:
+         - mfe-network
+       depends_on:
+         carrinho:
+           condition: service_healthy
+         produtos:
+           condition: service_healthy
+       healthcheck:
+         test: ["CMD", "curl", "-f", "http://localhost:8083"]
+         interval: 30s
+         timeout: 10s
+         retries: 3
+         start_period: 40s
+
+   networks:
+     mfe-network:
+       driver: bridge

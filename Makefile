@@ -1,7 +1,7 @@
 NODE_VERSION = 20.11.1
 NPM_VERSION = 9.8.1
 
-.PHONY: help setup install start clean aws-configure terraform-init terraform-plan terraform-apply terraform-destroy build-all deploy-local
+.PHONY: help setup install start clean aws-configure terraform-init terraform-plan terraform-apply terraform-destroy build-all deploy-local docker-build docker-up docker-down docker-logs docker-clean
 
 help:
 	@echo "=== React Microfrontend - Comandos Disponiveis ==="
@@ -20,6 +20,13 @@ help:
 	@echo "=== Build e Deploy Local - Comandos Disponiveis ==="
 	@echo "make build-all     - Compila todos os microfrontends"
 	@echo "make deploy-local  - Compila e faz deploy dos microfrontends para a AWS"
+	@echo ""
+	@echo "=== Docker - Comandos Disponiveis ==="
+	@echo "make docker-build  - Constrói as imagens Docker de todos os serviços"
+	@echo "make docker-up     - Inicia todos os serviços com Docker Compose"
+	@echo "make docker-down   - Para todos os serviços Docker"
+	@echo "make docker-logs   - Mostra os logs de todos os serviços"
+	@echo "make docker-clean  - Remove containers, imagens e volumes Docker"
 
 setup:
 	@echo "Configurando ambiente de desenvolvimento..."
@@ -127,3 +134,33 @@ deploy-local: build-all
 	aws cloudfront create-invalidation --distribution-id $$DIST_ID --paths "/*"
 	@echo "Deploy concluído com sucesso!"
 	@echo "URL da aplicação: https://$$(cd terraform && terraform output -raw app_distribution_domain_name)"
+
+# === Comandos Docker ===
+
+docker-build:
+	@echo "=== Construindo imagens Docker ==="
+	@docker-compose build --no-cache
+	@echo "Imagens Docker construídas com sucesso!"
+
+docker-up: docker-build
+	@echo "=== Iniciando serviços com Docker Compose ==="
+	@echo "Aplicação principal: http://localhost:8083"
+	@echo "Microfrontend Carrinho: http://localhost:8081"
+	@echo "Microfrontend Produtos: http://localhost:8082"
+	@docker-compose up -d
+	@echo "Serviços iniciados com sucesso!"
+
+docker-down:
+	@echo "=== Parando serviços Docker ==="
+	@docker-compose down
+	@echo "Serviços parados com sucesso!"
+
+docker-logs:
+	@echo "=== Logs dos serviços Docker ==="
+	@docker-compose logs -f
+
+docker-clean:
+	@echo "=== Limpando containers, imagens e volumes Docker ==="
+	@docker-compose down -v --rmi all
+	@docker system prune -f
+	@echo "Limpeza Docker concluída com sucesso!"
