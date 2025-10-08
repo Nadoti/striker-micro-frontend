@@ -2,6 +2,7 @@ import React from "react";
 import InfoBox from "./components/InfoBox";
 import BalanceBox from "./components/BalanceBox";
 import ChartBox from "./components/ChartBox";
+import "../styles/index.css"; // ← Adicionar esta linha
 
 const entrada = "R$ 5.000,00";
 const saida = "R$ 5.000,00";

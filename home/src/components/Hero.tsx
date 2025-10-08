@@ -12,7 +12,7 @@ export default function Hero() {
           <h1 className="hero-title">
             O futuro do <span className="title-gradient">digital banking</span>
           </h1>
-          <p className="text-xl">
+          <p className="hero-description">
             Experimente uma nova era bancária com tecnologia de ponta, segurança máxima e atendimento humanizado 24/7.
           </p>
           <div className="hero-buttons">
@@ -23,11 +23,11 @@ export default function Hero() {
         <div className={isVisible ? "fade-in" : ""}>
           <div className="card">
             <div>
-              <div className="text-2xl font-bold mb-2">BlueCard Premium Black</div>
-              <div className="text-sm opacity-80">**** **** **** 1234</div>
+              <div className="card-title">BlueCard Premium Black</div>
+              <div className="card-number">**** **** **** 1234</div>
             </div>
             <div>
-              <div>Válido até 12/28</div>
+              <div className="card-valid">Válido até 12/28</div>
             </div>
           </div>
         </div>

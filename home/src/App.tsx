@@ -1,6 +1,7 @@
 import React from "react";
 import Hero from "./components/Hero";
 import Stats from "./components/Stats";
+import "../styles/index.css"; // ← Adicionar esta linha
 
 const statsData = [
   { number: "2M+", label: "Clientes Ativos" },
@@ -11,7 +12,7 @@ const statsData = [
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-gray-900 text-white overflow-x-hidden">
+    <div className="home-container">
       <Hero />
       <Stats stats={statsData} />
       <div className="fx-container">

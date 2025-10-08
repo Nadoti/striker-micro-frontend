@@ -11,7 +11,7 @@ const devConfig = {
   },
   devServer: { 
     port: 8083, 
-    historyApiFallback: { index: 'index.html' },
+    historyApiFallback: true, // ← Simplificado
     hot: true,
     headers: {
       'Access-Control-Allow-Origin': '*',
@@ -22,8 +22,8 @@ const devConfig = {
       name: 'app',
       remotes: {
         carrinho: 'carrinho@http://localhost:8081/remoteEntry.js',
-        produtos: 'produtos@http://localhost:8082/remoteEntry.js',
         dashboard: 'dashboard@http://localhost:8085/remoteEntry.js',
+        home: 'home@http://localhost:8086/remoteEntry.js',
       },
       shared: {
         ...deps,

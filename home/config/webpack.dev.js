@@ -7,20 +7,21 @@ const deps = require('../package.json').dependencies;
 const devConfig = {
   mode: 'development',
   output: { 
-    publicPath: 'http://localhost:8082/',
+    publicPath: 'http://localhost:8086/',
     filename: '[name].js',
   },
   devServer: { 
-    port: 8082, 
-    historyApiFallback: { index: 'index.html' },
+    port: 8086, 
+    historyApiFallback: true,
     hot: true,
     headers: {
       'Access-Control-Allow-Origin': '*',
     },
   },
+  // ← Remover completamente a seção module para usar apenas o common
   plugins: [
     new ModuleFederationPlugin({
-      name: 'produtos',
+      name: 'home',
       filename: 'remoteEntry.js',
       exposes: {
         './App': './src/bootstrap',
@@ -58,6 +59,9 @@ const devConfig = {
           eager: false
         }
       },
+    }),
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
     }),
   ],
 };

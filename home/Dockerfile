@@ -1,4 +1,4 @@
-# Dockerfile para o microfrontend Produtos
+# Dockerfile para o microfrontend Carrinho
 FROM node:18-alpine
 
 # Instalar curl para health checks
@@ -20,7 +20,7 @@ RUN npm install -g webpack-cli
 COPY . .
 
 # Expor porta
-EXPOSE 8082
+EXPOSE 8086
 
 # Comando para iniciar o servidor de desenvolvimento usando npx
 CMD ["npx", "webpack", "serve", "--config", "config/webpack.dev.js"]
