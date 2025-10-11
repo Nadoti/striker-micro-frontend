@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App"
+import ErrorBoundary from '../components/ErrorBoundary';
 
 const [DashboardLazy, HomeLazy] = [
 	'Dashboard',	
@@ -15,17 +16,21 @@ export const router = createBrowserRouter([
 	{
 		path: '/home',
 		element: (
-			<Suspense fallback={<div>Carregando Home...</div>}>
-				<HomeLazy />
-			</Suspense>
+			<ErrorBoundary>
+				<Suspense fallback={<div>Carregando Home...</div>}>
+					<HomeLazy />
+				</Suspense>
+			</ErrorBoundary>
 		),
 	},
 	{
 		path: '/dashboard',
 		element: (
-			<Suspense fallback={<div>Carregando Dashboard...</div>}>
-				<DashboardLazy />
-			</Suspense>
+			<ErrorBoundary>
+				<Suspense fallback={<div>Carregando Dashboard...</div>}>
+					<DashboardLazy />
+				</Suspense>
+			</ErrorBoundary>
 		),
 	},
 ]);
