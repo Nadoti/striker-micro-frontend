@@ -8,7 +8,7 @@ const prodConfig = {
   mode: 'production',
   output: {
     filename: '[name].[contenthash].js',
-    publicPath: 'auto',
+    publicPath: '/',
     path: require('path').resolve(__dirname, '../dist'),
     clean: true
   },
