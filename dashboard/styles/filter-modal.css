@@ -1,0 +1,213 @@
+/* Mobile First - Base styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.modal-container {
+  background: #313137;
+  border-radius: 12px;
+  padding: 24px 20px;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+.modal-close-btn:hover {
+  background: #dc2626;
+}
+
+.modal-close-btn:active {
+  transform: scale(0.95);
+}
+
+.modal-title {
+  color: white;
+  font-size: 20px;
+  font-weight: 400;
+  margin: 0 0 20px 0;
+  padding-right: 20px;
+}
+
+.form-group {
+  margin-bottom: 14px;
+  position: relative;
+}
+
+.modal-input {
+  width: 100%;
+  padding: 14px 16px;
+  background: transparent;
+  border: 2px solid #4F46E5;
+  border-radius: 8px;
+  color: #9ca3af;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.modal-input:focus {
+  border-color: #818cf8;
+}
+
+.modal-input::placeholder {
+  color: #9ca3af;
+}
+
+.date-input-wrapper {
+  position: relative;
+}
+
+.date-input {
+  padding-right: 60px;
+  color-scheme: dark;
+}
+
+.date-input::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+.clear-date-btn {
+  position: absolute;
+  right: 36px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: #9ca3af;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 6px 10px;
+  min-width: 28px;
+  min-height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clear-date-btn:hover {
+  color: white;
+}
+
+.clear-date-btn:active {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.date-dropdown-icon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  font-size: 12px;
+  pointer-events: none;
+}
+
+.modal-submit-btn {
+  width: 100%;
+  padding: 16px;
+  background: #4F46E5;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.2s;
+  min-height: 48px;
+}
+
+.modal-submit-btn:hover {
+  background: #5558e3;
+}
+
+.modal-submit-btn:active {
+  background: #4f46e5;
+  transform: scale(0.98);
+}
+
+/* Tablets - 768px and up */
+@media (min-width: 768px) {
+  .modal-overlay {
+    padding: 24px;
+  }
+
+  .modal-container {
+    padding: 28px 24px;
+    max-width: 500px;
+  }
+
+  .modal-title {
+    font-size: 22px;
+    margin-bottom: 22px;
+  }
+
+  .form-group {
+    margin-bottom: 16px;
+  }
+
+  .modal-close-btn {
+    top: -12px;
+    right: -12px;
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* Desktop - 1024px and up */
+@media (min-width: 1024px) {
+  .modal-container {
+    padding: 32px;
+  }
+
+  .modal-title {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+
+  .modal-submit-btn {
+    padding: 14px;
+  }
+
+  .clear-date-btn {
+    font-size: 14px;
+    padding: 4px 8px;
+  }
+}
