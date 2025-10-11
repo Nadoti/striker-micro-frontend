@@ -1,0 +1,61 @@
+name: Sync Microfrontends to Separate Repos
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'home/**'
+      - 'dashboard/**'
+
+jobs:
+  sync-home:
+    if: contains(github.event.head_commit.modified, 'home/')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Git
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+
+      - name: Push to home repository
+        env:
+          HOME_REPO_TOKEN: ${{ secrets.HOME_REPO_TOKEN }}
+        run: |
+          cd home
+          git init
+          git remote add origin https://${HOME_REPO_TOKEN}@github.com/[seu-usuario]/mfe-home.git
+          git add .
+          git commit -m "Sync from main repo: ${{ github.event.head_commit.message }}"
+          git push -f origin main
+
+  sync-dashboard:
+    if: contains(github.event.head_commit.modified, 'dashboard/')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Git
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+
+      - name: Push to dashboard repository
+        env:
+          DASHBOARD_REPO_TOKEN: ${{ secrets.DASHBOARD_REPO_TOKEN }}
+        run: |
+          cd dashboard
+          git init
+          git remote add origin https://${DASHBOARD_REPO_TOKEN}@github.com/[seu-usuario]/mfe-dashboard.git
+          git add .
+          git commit -m "Sync from main repo: ${{ github.event.head_commit.message }}"
+          git push -f origin main
+
