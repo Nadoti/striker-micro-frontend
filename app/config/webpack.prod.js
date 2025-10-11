@@ -8,12 +8,14 @@ const prodConfig = {
   mode: 'production',
   output: {
     filename: '[name].[contenthash].js',
-    publicPath: '/',
-    path: require('path').resolve(__dirname, '../dist')
+    publicPath: 'auto',
+    path: require('path').resolve(__dirname, '../dist'),
+    clean: true
   },
   plugins: [
     new ModuleFederationPlugin({
       name: 'app',
+      filename: 'remoteEntry.js',
       remotes: getRemotes(),
       shared: {
         ...deps,

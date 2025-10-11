@@ -16,15 +16,23 @@ No painel da Vercel, configure:
 - **Build Command**: `npm run build`
 - **Output Directory**: `dist`
 - **Install Command**: `npm install`
+- **Node Version**: 20.x
 
-### 2. Variáveis de Ambiente
+### 2. Root Directory
+
+**IMPORTANTE**: Se estiver deployando apenas a pasta `app`, configure:
+- **Root Directory**: `app`
+
+### 3. Variáveis de Ambiente
 
 Não é necessário configurar variáveis de ambiente, pois os URLs dos microfrontends estão hardcoded no arquivo `config/remotes.js`.
 
-### 3. Root Directory
+### 4. Configurações no vercel.json
 
-Se estiver deployando apenas a pasta `app`, configure:
-- **Root Directory**: `app`
+O arquivo `vercel.json` já está configurado com:
+- Rewrites para SPA (Single Page Application)
+- Headers CORS
+- Cache-Control otimizado
 
 ## Passo a Passo
 
