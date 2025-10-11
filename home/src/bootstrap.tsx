@@ -42,7 +42,7 @@ const inDevMode = () => process.env.NODE_ENV === 'development';
 const inIsolation = () => !!document.querySelector(ROOT_ID);
 
 const rootEl = document.querySelector(ROOT_ID);
-if (inDevMode() && inIsolation() && rootEl) {
+if (inIsolation() && rootEl) {
   mount(rootEl, { defaultHistory: createBrowserHistory() });
 }
 

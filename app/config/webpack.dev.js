@@ -2,6 +2,7 @@ const { merge } = require('webpack-merge');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 const commonConfig = require('./webpack.common');
 const deps = require('../package.json').dependencies;
+const { getRemotes } = require('./remotes');
 
 const devConfig = {
   mode: 'development',
@@ -20,11 +21,7 @@ const devConfig = {
   plugins: [
     new ModuleFederationPlugin({
       name: 'app',
-      remotes: {
-        carrinho: 'carrinho@http://localhost:8081/remoteEntry.js',
-        dashboard: 'dashboard@http://localhost:8085/remoteEntry.js',
-        home: 'home@http://localhost:8086/remoteEntry.js',
-      },
+      remotes: getRemotes(),
       shared: {
         ...deps,
         react: { 

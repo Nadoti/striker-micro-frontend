@@ -3,11 +3,11 @@ const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPl
 const commonConfig = require('./webpack.common');
 const shared = require('../package.json').dependencies;
 
-const devConfig = {
+const prodConfig = {
   mode: 'production',
   output: {
     filename: '[name].[contenthash].js',
-    publicPath: '/dashboard/latest/'
+    publicPath: '/'
   },
   plugins: [
     new ModuleFederationPlugin({
@@ -21,4 +21,4 @@ const devConfig = {
   ],
 };
 
-module.exports = merge(commonConfig, devConfig);
+module.exports = merge(commonConfig, prodConfig);
