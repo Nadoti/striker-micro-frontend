@@ -8,7 +8,8 @@ const prodConfig = {
   mode: 'production',
   output: {
     filename: '[name].[contenthash].js',
-    publicPath: '/app/latest/'
+    publicPath: '/',
+    path: require('path').resolve(__dirname, '../dist')
   },
   plugins: [
     new ModuleFederationPlugin({
